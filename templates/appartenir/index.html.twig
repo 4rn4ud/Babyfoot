@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Appartenir index{% endblock %}
+
+{% block body %}
+    <h1>Appartenir index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateCreation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for appartenir in appartenirs %}
+            <tr>
+                <td>{{ appartenir.id }}</td>
+                <td>{{ appartenir.dateCreation ? appartenir.dateCreation|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_appartenir_show', {'id': appartenir.id}) }}">show</a>
+                    <a href="{{ path('app_appartenir_edit', {'id': appartenir.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_appartenir_new') }}">Create new</a>
+{% endblock %}

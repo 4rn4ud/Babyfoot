@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Appartenir{% endblock %}
+
+{% block body %}
+    <h1>Create new Appartenir</h1>
+
+    {{ include('appartenir/_form.html.twig') }}
+
+    <a href="{{ path('app_appartenir_index') }}">back to list</a>
+{% endblock %}

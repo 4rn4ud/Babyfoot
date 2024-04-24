@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Appartenir{% endblock %}
+
+{% block body %}
+    <h1>Appartenir</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ appartenir.id }}</td>
+            </tr>
+            <tr>
+                <th>DateCreation</th>
+                <td>{{ appartenir.dateCreation ? appartenir.dateCreation|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_appartenir_index') }}">back to list</a>
+
+    <a href="{{ path('app_appartenir_edit', {'id': appartenir.id}) }}">edit</a>
+
+    {{ include('appartenir/_delete_form.html.twig') }}
+{% endblock %}
