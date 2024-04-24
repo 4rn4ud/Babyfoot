@@ -11,9 +11,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+// use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+// use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 #[Route('/joueur')]
 class JoueurController extends AbstractController
 {
+    // #[Security("is_granted('ROLE_ADMIN')")]
+    // #[IsGranted('ROLE_ADMIN')]
     #[Route('/', name: 'app_joueur_index', methods: ['GET'])]
     public function index(JoueurRepository $joueurRepository): Response
     {
