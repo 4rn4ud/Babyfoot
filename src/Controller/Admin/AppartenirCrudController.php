@@ -8,6 +8,15 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
+
 class AppartenirCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -25,4 +34,10 @@ class AppartenirCrudController extends AbstractCrudController
         ];
     }
     */
+
+    public function configureFields(string $pageName): iterable
+    {
+        yield AssociationField::new('idEquipe');
+        yield AssociationField::new('idJoueur');
+    }
 }
