@@ -61,7 +61,7 @@
                                     <li><a href="{{ path('app_index') }}" class="nav-link">Accueil</a></li>
                                     <li><a href="{{ path('app_partie_index') }}" class="nav-link">Matchs</a></li>
                                     <li><a href="players.html" class="nav-link">Players</a></li>
-                                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                                    <li><a href="{{ path('app_contact') }}" class="nav-link">Contact</a></li>
                                     {% if not app.user %}
                                         <li><a href="{{ path('app_login') }}" class="nav-link">Se connecter</a></li>
                                         <li><a href="{{ path('app_register') }}" class="nav-link">S'enregistrer</a></li>
