@@ -12,6 +12,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+
+#[IsGranted('ROLE_ADMIN')]
 class PartieCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string

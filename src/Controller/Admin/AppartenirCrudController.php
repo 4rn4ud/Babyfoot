@@ -17,6 +17,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
 
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+
+#[IsGranted('ROLE_ADMIN')]
 class AppartenirCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
