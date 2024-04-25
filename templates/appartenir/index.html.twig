@@ -9,7 +9,6 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>DateCreation</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -17,7 +16,6 @@
         {% for appartenir in appartenirs %}
             <tr>
                 <td>{{ appartenir.id }}</td>
-                <td>{{ appartenir.dateCreation ? appartenir.dateCreation|date('Y-m-d') : '' }}</td>
                 <td>
                     <a href="{{ path('app_appartenir_show', {'id': appartenir.id}) }}">show</a>
                     <a href="{{ path('app_appartenir_edit', {'id': appartenir.id}) }}">edit</a>

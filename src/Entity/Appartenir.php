@@ -22,9 +22,6 @@ class Appartenir
     #[ORM\JoinColumn(nullable: false)]
     private ?Equipe $idEquipe = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateCreation = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -50,18 +47,6 @@ class Appartenir
     public function setIdEquipe(?Equipe $idEquipe): static
     {
         $this->idEquipe = $idEquipe;
-
-        return $this;
-    }
-
-    public function getDateCreation(): ?\DateTimeInterface
-    {
-        return $this->dateCreation;
-    }
-
-    public function setDateCreation(\DateTimeInterface $dateCreation): static
-    {
-        $this->dateCreation = $dateCreation;
 
         return $this;
     }
