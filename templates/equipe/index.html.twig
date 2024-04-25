@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Slogan</th>
+                <th>DateCreation</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <td>{{ equipe.id }}</td>
                 <td>{{ equipe.nom }}</td>
                 <td>{{ equipe.slogan }}</td>
+                <td>{{ appartenir.dateCreation ? appartenir.dateCreation|date('Y-m-d') : '' }}</td>
                 <td>
                     <a href="{{ path('app_equipe_show', {'id': equipe.id}) }}">show</a>
                     <a href="{{ path('app_equipe_edit', {'id': equipe.id}) }}">edit</a>
