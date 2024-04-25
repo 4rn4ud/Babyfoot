@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 // use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-// use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+// use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/joueur')]
 class JoueurController extends AbstractController
