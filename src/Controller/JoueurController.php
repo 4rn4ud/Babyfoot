@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 // use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/joueur')]
 class JoueurController extends AbstractController
@@ -27,14 +28,22 @@ class JoueurController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'app_joueur_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $joueur = new Joueur();
         $form = $this->createForm(JoueurType::class, $joueur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $joueur->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $joueur,
+                    $form->get('password')->getData()
+                )
+            );
             $entityManager->persist($joueur);
             $entityManager->flush();
 
@@ -56,12 +65,19 @@ class JoueurController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_joueur_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Joueur $joueur, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Joueur $joueur, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $form = $this->createForm(JoueurType::class, $joueur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $joueur->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $joueur,
+                    $form->get('password')->getData()
+                )
+            );
             $entityManager->flush();
 
             return $this->redirectToRoute('app_joueur_index', [], Response::HTTP_SEE_OTHER);
