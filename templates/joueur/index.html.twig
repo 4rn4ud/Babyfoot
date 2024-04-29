@@ -9,11 +9,11 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
                 <th>Email</th>
                 <th>Roles</th>
                 <th>Password</th>
-                <th>Nom</th>
-                <th>Prenom</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,11 +21,11 @@
         {% for joueur in joueurs %}
             <tr>
                 <td>{{ joueur.id }}</td>
+                <td>{{ joueur.nom }}</td>
+                <td>{{ joueur.prenom }}</td>
                 <td>{{ joueur.email }}</td>
                 <td>{{ joueur.roles ? joueur.roles|json_encode : '' }}</td>
                 <td>{{ joueur.password }}</td>
-                <td>{{ joueur.nom }}</td>
-                <td>{{ joueur.prenom }}</td>
                 <td>
                     <a href="{{ path('app_joueur_show', {'id': joueur.id}) }}">show</a>
                     <a href="{{ path('app_joueur_edit', {'id': joueur.id}) }}">edit</a>
