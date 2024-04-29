@@ -45,4 +45,20 @@ class EquipeRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function findClassement()
+    {
+        $queryBuilder = $this->entityManager->createQueryBuilder();
+        $queryBuilder
+            ->select('e.nom AS nEquipe', 'COUNT(p.idGagnant) AS vEquipe')
+            ->from(Equipe::class, 'e')
+            ->join('e.parties', 'p', Join::WITH, 'p.equipe = e')
+            ->groupBy('nEquipe', 'vEquipe')
+            ->orderBy('vEquipe', 'DESC')
+            ->setMaxResults(10);
+
+        $result = $queryBuilder->getQuery()->getResult();
+
+        return $result;
+    }
 }
