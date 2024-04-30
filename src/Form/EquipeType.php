@@ -14,6 +14,7 @@ class EquipeType extends AbstractType
         $builder
             ->add('nom')
             ->add('slogan')
+            ->add('dateCreation')
         ;
     }
 
