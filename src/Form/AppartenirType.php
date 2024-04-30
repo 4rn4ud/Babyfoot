@@ -15,9 +15,6 @@ class AppartenirType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('dateCreation', null, [
-                'widget' => 'single_text',
-            ])
             ->add('idJoueur', EntityType::class, [
                 'class' => Joueur::class,
                 'choice_label' => 'id',
