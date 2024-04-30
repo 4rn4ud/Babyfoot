@@ -7,6 +7,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -56,15 +58,38 @@ class PartieCrudController extends AbstractCrudController
             yield $updatedAt->setFormTypeOptions([
                 'attr' => ['readonly' => true],
             ]);
+            yield IntegerField::new('scoreBleu')->setFormTypeOptions([
+                'data' => 0,
+                'attr' => ['readonly' => true],
+            ]);
+            yield IntegerField::new('scoreRouge')->setFormTypeOptions([
+                'data' => 0,
+                'attr' => ['readonly' => true],
+            ]);
+            yield BooleanField::new('partieFinie')->setFormTypeOptions([
+                'data' => false,
+                'attr' => ['readonly' => true],
+            ]);
         } else if (Crud::PAGE_EDIT === $pageName) {
             yield DateTimeField::new('dateDebut')->setFormTypeOption('attr', ['readonly' => true]);
             yield $updatedAt->setFormTypeOptions([
                 'data' => $currentDate,
                 'attr' => ['readonly' => true],
             ]);
+            yield IntegerField::new('scoreBleu');
+            yield IntegerField::new('scoreRouge');
+            yield AssociationField::new('idGagnant');
+            yield BooleanField::new('partieFinie')->setFormTypeOptions([
+                'data' => true,
+                'attr' => ['readonly' => true],
+            ]);
         } else {
             yield DateTimeField::new('dateDebut');
             yield DateTimeField::new('dateFin');
+            yield IntegerField::new('scoreBleu');
+            yield IntegerField::new('scoreRouge');
+            yield AssociationField::new('idGagnant');
+            // yield BooleanField::new('partieFinie');
         }
     }
 }

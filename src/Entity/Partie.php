@@ -20,16 +20,23 @@ class Partie
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateFin = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(inversedBy: 'parties')]
     private ?Equipe $idRouge = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(inversedBy: 'parties')]
     private ?Equipe $idBleu = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'parties')]
     private ?Equipe $idGagnant = null;
+
+    #[ORM\Column]
+    private ?int $scoreBleu = null;
+
+    #[ORM\Column]
+    private ?int $scoreRouge = null;
+
+    #[ORM\Column]
+    private ?bool $partieFinie = null;
 
     public function getId(): ?int
     {
@@ -92,6 +99,42 @@ class Partie
     public function setIdGagnant(?Equipe $idGagnant): static
     {
         $this->idGagnant = $idGagnant;
+
+        return $this;
+    }
+
+    public function getScoreBleu(): ?int
+    {
+        return $this->scoreBleu;
+    }
+
+    public function setScoreBleu(?int $scoreBleu): static
+    {
+        $this->scoreBleu = $scoreBleu;
+
+        return $this;
+    }
+
+    public function getScoreRouge(): ?int
+    {
+        return $this->scoreRouge;
+    }
+
+    public function setScoreRouge(?int $scoreRouge): static
+    {
+        $this->scoreRouge = $scoreRouge;
+
+        return $this;
+    }
+
+    public function isPartieFinie(): ?bool
+    {
+        return $this->partieFinie;
+    }
+
+    public function setPartieFinie(bool $partieFinie): static
+    {
+        $this->partieFinie = $partieFinie;
 
         return $this;
     }

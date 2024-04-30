@@ -6,6 +6,8 @@ use App\Entity\Equipe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+use Doctrine\ORM\Query\Expr\Join;
+
 /**
  * @extends ServiceEntityRepository<Equipe>
  *
@@ -48,17 +50,17 @@ class EquipeRepository extends ServiceEntityRepository
 
     public function findClassement()
     {
-        $queryBuilder = $this->entityManager->createQueryBuilder();
-        $queryBuilder
+        return $this->createQueryBuilder('e')
             ->select('e.nom AS nEquipe', 'COUNT(p.idGagnant) AS vEquipe')
-            ->from(Equipe::class, 'e')
-            ->join('e.parties', 'p', Join::WITH, 'p.equipe = e')
-            ->groupBy('nEquipe', 'vEquipe')
+            // ->from(Equipe::class, 'equipe')
+            ->join('e.parties', 'p', Join::WITH, 'p.idBleu = e.id')
+            // ->join('e.parties', 'p')
+            // ->groupBy('nEquipe', 'vEquipe')
+            ->groupBy('nEquipe')
             ->orderBy('vEquipe', 'DESC')
-            ->setMaxResults(10);
-
-        $result = $queryBuilder->getQuery()->getResult();
-
-        return $result;
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 }

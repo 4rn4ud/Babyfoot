@@ -187,62 +187,17 @@
                 </tr>
             </thead>
             <tbody>
+
+            {% for equipe in equipes %}
                 <tr>
-                <td>1</td>
-                <td><strong class="text-white">Football League</strong></td>
-                <td>22</td>
-                <td>2</td>
-                <td>140</td>
+                    <td>1</td>
+                    <td><strong class="text-white">{{equipe.nEquipe}}</strong></td>
+                    <td>{{equipe.vEquipe}}</td>
+                    <td>2</td>
+                    <td>140</td>
                 </tr>
-                <tr>
-                <td>2</td>
-                <td><strong class="text-white">Soccer</strong></td>
-                <td>22</td>
-                <td>2</td>
-                <td>140</td>
-                </tr>
-                <tr>
-                <td>3</td>
-                <td><strong class="text-white">Juvendo</strong></td>
-                <td>22</td>
-                <td>2</td>
-                <td>140</td>
-                </tr>
-                <tr>
-                <td>4</td>
-                <td><strong class="text-white">French Football League</strong></td>
-                <td>22</td>
-                <td>2</td>
-                <td>140</td>
-                </tr>
-                <tr>
-                <td>5</td>
-                <td><strong class="text-white">Legia Abante</strong></td>
-                <td>22</td>
-                <td>2</td>
-                <td>140</td>
-                </tr>
-                <tr>
-                <td>6</td>
-                <td><strong class="text-white">Gliwice League</strong></td>
-                <td>22</td>
-                <td>2</td>
-                <td>140</td>
-                </tr>
-                <tr>
-                <td>7</td>
-                <td><strong class="text-white">Cornika</strong></td>
-                <td>22</td>
-                <td>2</td>
-                <td>140</td>
-                </tr>
-                <tr>
-                <td>8</td>
-                <td><strong class="text-white">Gravity Smash</strong></td>
-                <td>22</td>
-                <td>2</td>
-                <td>140</td>
-                </tr>
+            {% endfor %}
+                
             </tbody>
             </table>
         </div>
