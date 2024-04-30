@@ -62,6 +62,9 @@
                                     <li><a href="{{ path('app_partie_index') }}" class="nav-link">Matchs</a></li>
                                     <li><a href="players.html" class="nav-link">Players</a></li>
                                     <li><a href="{{ path('app_contact') }}" class="nav-link">Contact</a></li>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <li><a href="{{ path('admin') }}" class="nav-link">Dashboard</a></li>
+                                    {% endif %}
                                     {% if not app.user %}
                                         <li><a href="{{ path('app_login') }}" class="nav-link">Se connecter</a></li>
                                         <li><a href="{{ path('app_register') }}" class="nav-link">S'enregistrer</a></li>
