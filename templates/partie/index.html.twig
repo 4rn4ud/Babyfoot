@@ -11,6 +11,11 @@
                 <th>Id</th>
                 <th>DateDebut</th>
                 <th>DateFin</th>
+                <th>Equipe Rouge</th>
+                <th>Score rouge</th>
+                <th>Equipe Bleue</th>
+                <th>Score bleu</th>
+                <th>État</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +25,16 @@
                 <td>{{ partie.id }}</td>
                 <td>{{ partie.dateDebut ? partie.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ partie.dateFin ? partie.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ partie.idRouge }}</td>
+                <td>{{ partie.scoreRouge }}</td>
+                <td>{{ partie.idBleu }}</td>
+                <td>{{ partie.scoreBleu }}</td>
+                {% if partie.partieFinie == true %}
+                    <td>Terminé</td>
+                {% endif %}
+                {% if partie.partieFinie == false %}
+                    <td>En cours</td>
+                {% endif %}
                 <td>
                     <a href="{{ path('app_partie_show', {'id': partie.id}) }}">show</a>
                     <a href="{{ path('app_partie_edit', {'id': partie.id}) }}">edit</a>

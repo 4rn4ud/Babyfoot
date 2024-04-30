@@ -30,8 +30,13 @@ class PartieType extends AbstractType
             ])
             ->add('idGagnant', EntityType::class, [
                 'class' => Equipe::class,
-                'choice_label' => 'id',
+                // 'choice_label' => 'id',
+                'placeholder' => 0,
+                'required' => false,
             ])
+            ->add('scoreRouge')
+            ->add('scoreBleu')
+            ->add('partieFinie')
         ;
     }
 

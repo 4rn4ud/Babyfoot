@@ -19,6 +19,31 @@
                 <th>DateFin</th>
                 <td>{{ partie.dateFin ? partie.dateFin|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+            <tr>
+                <th>Equipe Rouge</th>
+                <td>{{ partie.idRouge }}</td>
+            </tr>
+            <tr>
+                <th>Score Rouge</th>
+                <td>{{ partie.scoreRouge }}</td>
+            </tr>
+            <tr>
+                <th>Equipe Bleu</th>
+                <td>{{ partie.idRouge }}</td>
+            </tr>
+            <tr>
+                <th>Score Bleu</th>
+                <td>{{ partie.scoreRouge }}</td>
+            </tr>
+            <tr>
+                <th>Partie finie</th>
+                {% if partie.partieFinie == true %}
+                    <td>Terminé</td>
+                {% endif %}
+                {% if partie.partieFinie == false %}
+                    <td>En cours</td>
+                {% endif %}
+            </tr>
         </tbody>
     </table>
 

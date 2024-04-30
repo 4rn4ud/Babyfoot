@@ -30,13 +30,13 @@ class Partie
     private ?Equipe $idGagnant = null;
 
     #[ORM\Column]
-    private ?int $scoreBleu = null;
+    private ?int $scoreBleu = 0;
 
     #[ORM\Column]
-    private ?int $scoreRouge = null;
+    private ?int $scoreRouge = 0;
 
     #[ORM\Column]
-    private ?bool $partieFinie = null;
+    private ?bool $partieFinie = false;
 
     public function getId(): ?int
     {
