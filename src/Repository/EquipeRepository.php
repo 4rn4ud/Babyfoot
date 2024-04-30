@@ -53,12 +53,23 @@ class EquipeRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('e')
             ->select('e.nom AS nEquipe', 'COUNT(p.idGagnant) AS vEquipe')
             // ->from(Equipe::class, 'equipe')
-            ->join('e.parties', 'p', Join::WITH, 'p.idBleu = e.id')
+            ->join('e.parties', 'p', Join::WITH, 'p.idGagnant = e.id')
             // ->join('e.parties', 'p')
             // ->groupBy('nEquipe', 'vEquipe')
             ->groupBy('nEquipe')
             ->orderBy('vEquipe', 'DESC')
             ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findDefaites($value)
+    {
+        return $this->createQueryBuilder('e')
+            ->select('COUNT(e.id) AS dEquipe')
+            ->join('e.parties', 'p', Join::WITH, 'p.idGagnant != e.id')
+            ->setMaxResults(1)
             ->getQuery()
             ->getResult()
         ;

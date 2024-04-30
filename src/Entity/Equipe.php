@@ -32,7 +32,7 @@ class Equipe
     /**
      * @var Collection<int, Partie>
      */
-    #[ORM\OneToMany(targetEntity: Partie::class, mappedBy: 'idBleu')]
+    #[ORM\OneToMany(targetEntity: Partie::class, mappedBy: 'idGagnant')]
     private Collection $parties;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
