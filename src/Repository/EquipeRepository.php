@@ -48,30 +48,34 @@ class EquipeRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    public function findClassement()
+    public function findClassement(): array
     {
-        return $this->createQueryBuilder('e')
-            ->select('e.nom AS nEquipe', 'COUNT(p.idGagnant) AS vEquipe')
-            // ->from(Equipe::class, 'equipe')
-            ->join('e.parties', 'p', Join::WITH, 'p.idGagnant = e.id')
-            // ->join('e.parties', 'p')
-            // ->groupBy('nEquipe', 'vEquipe')
-            ->groupBy('nEquipe')
-            ->orderBy('vEquipe', 'DESC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
+        $conn = $this->getEntityManager()->getConnection();
 
-    public function findDefaites($value)
-    {
-        return $this->createQueryBuilder('e')
-            ->select('COUNT(e.id) AS dEquipe')
-            ->join('e.parties', 'p', Join::WITH, 'p.idGagnant != e.id')
-            ->setMaxResults(1)
-            ->getQuery()
-            ->getResult()
-        ;
+        $sql = "
+            SELECT
+            e.nom AS nEquipe,
+            COUNT(p1.id_gagnant_id) AS vEquipe,
+            (SELECT COUNT(p2.id_gagnant_id)
+                FROM Equipe e2
+                INNER JOIN Partie p2 ON p2.id_gagnant_id != e.id
+                WHERE e2.id = e.id) AS dEquipe
+            FROM
+                Equipe e
+            INNER JOIN
+                Partie p1
+            ON
+                p1.id_gagnant_id = e.id
+            GROUP BY
+                nEquipe
+            ORDER BY
+                vEquipe DESC;
+        
+            ";
+            
+        $resultSet = $conn->executeQuery($sql);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
     }
 }
